@@ -23,8 +23,8 @@ THEN I can save my initials and my score
 // Set Up Global Variables
 var currentQuestionIndex = 0;
 var currentQuestion;
-var time = 100;
-var timerId = 0;
+var timerCount;
+var timer;
 
 var questions = [
     {
@@ -103,7 +103,9 @@ var questionTitle = document.getElementById("question-titles");
 var choices = document.getElementById("choices");
 var startContainer = document.getElementById("start-screen");
 var timerEl = document.getElementById("timer");
-
+var finalScoreEl = document.getElementById("final-score");
+var submitEl = document.getElementById("submit");
+var highScoresList = document.getElementById("highscores-list");
 
 
 // start the quiz
@@ -113,7 +115,8 @@ function startQuiz(){
     // un-hide questions section
     questionEl.classList.add("show");
     // start timer
-    timerEl.textContent = time;
+    timerEl.textContent = timerCount;
+    startTimer();
     // run getQuestion Function
     getQuestion();
 }
@@ -164,10 +167,10 @@ function userAnswer(event) {
     // check if user guessed wrong
     if (userInput !== currentQuestion.answer) {
     // penalize time
-    time = time - 10;
+    timerCount = timerCount - 10;
   
     // display new time on page
-    timerEl.textContent = time;
+    timerEl.textContent = timerCount;
     // give them feedback, letting them know it's wrong
     alert("Answer Selected is Wrong!");
     } 
@@ -198,36 +201,53 @@ function userAnswer(event) {
 // End the quiz
 function quizEnd() {
     // stop timer
-
+    clearInterval(timer);
     // show end screen
     endEl.classList.add("show");
     questionEl.classList.remove("show");
-
-    // show final score
+    //show final score
+    finalScoreEl.textContent = timerCount;
     
-
 }
 
 // function for updating time
 
-function clocktick() {
-
-    // update time
-
-    // check to see if user ran out of time
+function startTimer() {
+    timerCount = 100;
+    timer = setInterval(function() {
+        timerCount--;
+        timerEl.textContent = timerCount;
+    }, 1000);
 }
 
 function saveHighscore() {
     // get value of input box - for initials
+    var initials = document.getElementById("initials").value;
+    console.log(initials);
 
-    // make sure value wasnt empty
-        // get saved scores from localstorage, or if not any set to empry array
+    var userScores = {
+        userInitials: initials,
+        userScores: timerCount
+    }
+    
+    // save to local storage
+    localStorage.setItem("userScores", JSON.stringify(userScores));
+    
+    // get saved scores from localstorage, or if not any set to empry array
+    var highscore = JSON.parse(localStorage.getItem("userScores")); 
+    console.log(highscore);
+    // format new score object for current user
+    if (highscore !== null) {
+       var li = document.createElement("li");
+       console.log(li);
+       console.log(highscore.userInitials);
+       console.log(highscore.userScores);
+       li.textContent = highscore.userInitials + " " + highscore.userScores;
+    }
+
         
-        // format new score object for current user
 
-        // save to local storage
-
-        // redirect to next page
+    // redirect to next page
 }
 
 function hideStart() {
@@ -239,3 +259,4 @@ function hideStart() {
 // click events
 startEl.addEventListener("click", startQuiz);
 choices.addEventListener("click", userAnswer);
+submitEl.addEventListener("click", saveHighscore);
