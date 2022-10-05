@@ -8,7 +8,37 @@
     <title>Quiz</title>
 </head>
 <body>
-    
+
+    <div>
+        <a href="./highscores.html">Leaderboards</a>
+    </div>
+
+    <div>
+        <p>Time Remaining <span id="timer">.</span></p>
+    </div>
+
+    <div>
+        <div id="start-screen" class="show">
+            <h1>Coding Quiz Challenge</h1>
+            <p>This quiz will test your knowledge in HTML CSS & JS!</p>
+        </div>
+
+        <div id="questions" class="hide">
+            <h2 id="question-titles"></h2>
+            <div id="choices"></div>
+        </div>
+
+        <div id="end-screen" class="hide">
+            <h2>Done!</h2>
+            <p>Your final score is <span id="final-score">.</span></p>
+            <p>
+                Enter Initials: <input type="text" id="initials" max="3" />
+                <button id="submit">Submit</button>
+            </p>
+        </div>
+
+        <div id="feedback" class="feedback hide"></div>
+    </div>
 
     <script src="./Assets/script.js"></script>
 </body>
