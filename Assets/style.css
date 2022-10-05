@@ -1,0 +1,27 @@
+.score-container {
+    display: inline-block;
+    padding: 20px;
+}
+
+#highscore {
+    text-decoration: none;
+    color: black;
+}
+
+.time-container {
+    padding-left: 75%;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
