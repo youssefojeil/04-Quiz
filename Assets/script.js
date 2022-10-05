@@ -25,19 +25,94 @@ var currentQuestion = 0;
 var time = 100;
 var timerId = 0;
 
+var questions = [
+    {
+        question: "Question 1",
+        choices: [
+            "Choice A",
+            "Choice B",
+            "Choice C",
+            "Choice D"
+        ],
+        answer: "Choice A"
+    },
+
+    {
+        question: "Question 2",
+        choices: [
+            "Choice D",
+            "Choice C",
+            "Choice B",
+            "Choice A"
+        ],
+        answer: "Choice B"
+    },
+
+    {
+        question: "Question 3",
+        choices: [
+            "Choice A",
+            "Choice B",
+            "Choice C",
+            "Choice D"
+        ],
+        answer: "Choice C"
+    },
+    
+    {
+        question: "Question 4",
+        choices: [
+            "Choice D",
+            "Choice C",
+            "Choice B",
+            "Choice A"
+        ],
+        answer: "Choice D"
+    },
+    
+    {
+        question: "Question 5",
+        choices: [
+            "Choice A",
+            "Choice B",
+            "Choice C",
+            "Choice D"
+        ],
+        answer: "Choice A"
+    },
+    {
+        question: "Question 6",
+        choices: [
+            "Choice D",
+            "Choice C",
+            "Choice B",
+            "Choice A"
+        ],
+        answer: "Choice A"
+    },
+]    
+    
+
+
 // set up vars to reference DOM elements
-var questionEl = document.getElementById("questions")
+var startEl = document.getElementById("start");
+var questionEl = document.getElementById("questions");
+var startContainer = document.getElementById("start-screen");
+var questionContainer = document.getElementById("questions");
+var timerEl = document.getElementById("timer");
 
 
 // start the quiz
 function startQuiz(){
     // hide start screen
-
+    startContainer.classList.remove("show");
+    startContainer.classList.add("hide");
     // un-hide questions section
-
+    questionContainer.classList.add("show");
     // start timer
-
+    timerEl.textContent = time;
     // run getQuestion Function
+    getQuestion();
 }
 
 function getQuestion() {
@@ -119,4 +194,4 @@ function saveHighscore() {
 }
 
 // click events
-    //user 
+startEl.addEventListener("click", startQuiz);

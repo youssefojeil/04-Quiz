@@ -8,6 +8,10 @@
     color: black;
 }
 
+#start {
+    margin-left: 40%;
+}
+
 .time-container {
     padding-left: 75%;
 }
