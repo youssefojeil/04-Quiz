@@ -21,7 +21,8 @@ THEN I can save my initials and my score
 */
 
 // Set Up Global Variables
-var currentQuestion = 0;
+var currentQuestionIndex = 0;
+var currentQuestion;
 var time = 100;
 var timerId = 0;
 
@@ -97,18 +98,19 @@ var questions = [
 // set up vars to reference DOM elements
 var startEl = document.getElementById("start");
 var questionEl = document.getElementById("questions");
+var questionTitle = document.getElementById("question-titles");
+var choices = document.getElementById("choices");
 var startContainer = document.getElementById("start-screen");
-var questionContainer = document.getElementById("questions");
 var timerEl = document.getElementById("timer");
+
 
 
 // start the quiz
 function startQuiz(){
     // hide start screen
-    startContainer.classList.remove("show");
-    startContainer.classList.add("hide");
+    hideStart();
     // un-hide questions section
-    questionContainer.classList.add("show");
+    questionEl.classList.add("show");
     // start timer
     timerEl.textContent = time;
     // run getQuestion Function
@@ -117,38 +119,64 @@ function startQuiz(){
 
 function getQuestion() {
     // get current question object from array
-
+    currentQuestion = questions[currentQuestionIndex];
+    console.log(currentQuestion);
     // update title with current question
-
+    questionTitle.textContent = currentQuestion.question;
     // clear out any old question choices
+    choices.innerHTML = "";
 
+    console.log(currentQuestion.choices.length);
     // loop over choices 
-        // create new buttons for each choice
-
+    for(var i = 0; i < currentQuestion.choices.length; i ++) {
+        
+         // create new buttons for each choice
+        var button = document.createElement("button");
+        
+        console.log(currentQuestion.choices[i]);
+        
         // display on the page
+        button.textContent = currentQuestion.choices[i];
+        button.setAttribute("data", currentQuestion.choices[i]);
+        choices.appendChild(button);
+    }
+       
+
+        
 }
 
 // function for clicking an answer
 
-function questionClick(event) {
+function userAnswer(event) {
 
-    // if the clicked element is not a choice button, do nothing.
-    if (something) {
+    var element = event.target;
+
+    console.log(element);
+
+    if (element.matches("button") === true) {
+        
+        var userInput = element.getAttribute("data");
+        console.log(userInput);
 
     }
+
+    // if the clicked element is not a choice button, do nothing.
+    //if (something) {
+
+ //   }
   
-    if (something) {
+   // if (something) {
     // check if user guessed wrong
       // penalize time
   
       // display new time on page
   
       // give them feedback, letting them know it's wrong
-    } 
+    //} 
     
-    else {
+   // else {
       // give them feedback, letting them know it's right
-    }
+    //}
   
     // flash right/wrong feedback on page for a short period of time
   
@@ -193,5 +221,12 @@ function saveHighscore() {
         // redirect to next page
 }
 
+function hideStart() {
+    startContainer.classList.remove("show");
+    startContainer.classList.add("hide");
+}
+
+
 // click events
 startEl.addEventListener("click", startQuiz);
+choices.addEventListener("click", userAnswer);
