@@ -97,6 +97,7 @@ var questions = [
 
 // set up vars to reference DOM elements
 var startEl = document.getElementById("start");
+var endEl = document.getElementById("end-screen");
 var questionEl = document.getElementById("questions");
 var questionTitle = document.getElementById("question-titles");
 var choices = document.getElementById("choices");
@@ -139,52 +140,59 @@ function getQuestion() {
         button.textContent = currentQuestion.choices[i];
         button.setAttribute("data", currentQuestion.choices[i]);
         choices.appendChild(button);
-    }
-       
-
-        
+    }        
 }
 
 // function for clicking an answer
 
 function userAnswer(event) {
 
+    //log correct answer
+    console.log(currentQuestion.answer);
+    // stores event in element
     var element = event.target;
-
     console.log(element);
 
+    // checks if element is a button
     if (element.matches("button") === true) {
         
+        // get data out of button clicked
         var userInput = element.getAttribute("data");
         console.log(userInput);
-
     }
 
-    // if the clicked element is not a choice button, do nothing.
-    //if (something) {
-
- //   }
-  
-   // if (something) {
     // check if user guessed wrong
-      // penalize time
+    if (userInput !== currentQuestion.answer) {
+    // penalize time
+    time = time - 10;
   
-      // display new time on page
-  
-      // give them feedback, letting them know it's wrong
-    //} 
+    // display new time on page
+    timerEl.textContent = time;
+    // give them feedback, letting them know it's wrong
+    alert("Answer Selected is Wrong!");
+    } 
     
-   // else {
+    else {
       // give them feedback, letting them know it's right
-    //}
+      alert("Answer Selected is Right!");
+    }
   
     // flash right/wrong feedback on page for a short period of time
   
     // move to next question
-  
+    currentQuestionIndex++;
+    console.log("current question index: " + currentQuestionIndex);
+    console.log("Total number of questions: " + questions.length);
     // check if we've run out of questions
-      // if so, end the quiz
-      // else, get the next question
+    if(currentQuestionIndex === questions.length){
+        // if so, end the quiz
+        quizEnd();
+    }
+      
+    // else, get the next question
+    else{
+        getQuestion();
+    }
 }
 
 // End the quiz
@@ -192,10 +200,11 @@ function quizEnd() {
     // stop timer
 
     // show end screen
+    endEl.classList.add("show");
+    questionEl.classList.remove("show");
 
     // show final score
-
-    // hide questions section
+    
 
 }
 
