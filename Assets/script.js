@@ -93,7 +93,6 @@ function startQuiz(){
     // un-hide questions section
     questionEl.classList.add("show");
     // start timer
-    timerEl.textContent = timerCount;
     startTimer();
     // run getQuestion Function
     getQuestion();
@@ -102,22 +101,20 @@ function startQuiz(){
 function getQuestion() {
     // get current question object from array
     currentQuestion = questions[currentQuestionIndex];
-    console.log(currentQuestion);
+  
     // update title with current question
     questionTitle.textContent = currentQuestion.question;
+    
     // clear out any old question choices
     choices.innerHTML = "";
-
-    console.log(currentQuestion.choices.length);
+    
     // loop over choices 
     for(var i = 0; i < currentQuestion.choices.length; i ++) {
         
          // create new buttons for each choice
         var button = document.createElement("button");
-        
-        console.log(currentQuestion.choices[i]);
-        
-        // display on the page
+           
+        // add the choices to button texts & data attribute, append to screen
         button.textContent = currentQuestion.choices[i];
         button.setAttribute("data", currentQuestion.choices[i]);
         choices.appendChild(button);
@@ -125,21 +122,15 @@ function getQuestion() {
 }
 
 // function for clicking an answer
-
 function userAnswer(event) {
 
-    //log correct answer
-    console.log(currentQuestion.answer);
     // stores event in element
     var element = event.target;
-    console.log(element);
 
     // checks if element is a button
     if (element.matches("button") === true) {
-        
         // get data out of button clicked
         var userInput = element.getAttribute("data");
-        console.log(userInput);
     }
     
     var feedback = document.createElement("p");
@@ -148,7 +139,6 @@ function userAnswer(event) {
     if (userInput !== currentQuestion.answer) {
     // penalize time
     timerCount = timerCount - 10;
-  
     // display new time on page
     timerEl.textContent = timerCount;
     // give them feedback, letting them know it's wrong
@@ -213,6 +203,7 @@ function startTimer() {
     }, 1000);
 }
 
+// save highscore to local storage
 function saveHighscore() {
 
     // get value of input box - for initials

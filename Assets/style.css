@@ -13,12 +13,6 @@ button {
     margin: 10px;
 }
 
-.score-container {
-    display: inline-block;
-    padding: 20px;
-}
-
-
 #highscore {
     text-decoration: none;
     color: #0e9594;
@@ -69,6 +63,12 @@ button {
     margin: 10px;
 }
 
+.score-container {
+    display: inline-block;
+    padding: 20px;
+}
+
+
 .time-container {
     padding-left: 75%;
 }
@@ -106,6 +106,14 @@ button {
     margin: 0 450px;
 }
 
+button:hover {
+    border: 1px solid  #c2cae8;
+    border-radius:  10px;
+    font-size: large;
+    font-weight: bold;
+    background-color: #c2cae8;
+    color: #0e9594;
+}
 
 
 #start:hover {
@@ -125,11 +133,3 @@ button {
     color: #c2cae8;
 }
 
-button:hover {
-    border: 1px solid  #c2cae8;
-    border-radius:  10px;
-    font-size: large;
-    font-weight: bold;
-    background-color: #c2cae8;
-    color: #0e9594;
-}
