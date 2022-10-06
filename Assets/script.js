@@ -28,68 +28,68 @@ var timer;
 
 var questions = [
     {
-        question: "Question 1",
+        question: "Which of the following keywords is used to define a variable in Javascript?",
         choices: [
-            "Choice A",
-            "Choice B",
-            "Choice C",
-            "Choice D"
+            "var",
+            "let",
+            "Both A and B",
+            "None of the above"
         ],
-        answer: "Choice A"
+        answer: "Both A and B"
     },
 
     {
-        question: "Question 2",
+        question: "Which of the following methods is used to access HTML elements using Javascript?",
         choices: [
-            "Choice D",
-            "Choice C",
-            "Choice B",
-            "Choice A"
+            "getElementbyId()",
+            "getIdbyElement()",
+            "var",
+            "get.Element.by.Id()"
         ],
-        answer: "Choice B"
+        answer: "getElementbyId()"
     },
 
     {
-        question: "Question 3",
+        question: "Which of the following tag is used for inserting the largest heading in HTML?",
         choices: [
-            "Choice A",
-            "Choice B",
-            "Choice C",
-            "Choice D"
+            "<h3>",
+            "<h1>",
+            "<h6>",
+            "<h5>"
         ],
-        answer: "Choice C"
+        answer: "<h1>"
     },
     
     {
-        question: "Question 4",
+        question: "How do you create an unordered list in HTML?",
         choices: [
-            "Choice D",
-            "Choice C",
-            "Choice B",
-            "Choice A"
+            "<ol>",
+            "<li>",
+            "<i>",
+            "<ul>"
         ],
-        answer: "Choice D"
+        answer: "<ul>"
     },
     
     {
-        question: "Question 5",
+        question: "The property in CSS used to change the background color of an element is?",
         choices: [
-            "Choice A",
-            "Choice B",
-            "Choice C",
-            "Choice D"
+            "bgcolor",
+            "color",
+            "background-color",
+            "all of the above"
         ],
-        answer: "Choice A"
+        answer: "background-color"
     },
     {
-        question: "Question 6",
+        question: "The HTML attribute used to define the internal stylesheet is?",
         choices: [
-            "Choice D",
-            "Choice C",
-            "Choice B",
-            "Choice A"
+            "<style>",
+            "style",
+            "<link>",
+            "<script>"
         ],
-        answer: "Choice A"
+        answer: "<style>"
     },
 ]    
     
@@ -249,7 +249,7 @@ function saveHighscore() {
     var sortedHighscore = highscore.reverse();
 
     // redirect to next page
-    //location.href = "./highscores.html";
+    location.href = "./highscores.html";
     
     console.log(sortedHighscore);
     // format new score object for current user

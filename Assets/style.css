@@ -9,7 +9,14 @@
 }
 
 #start {
-    margin-left: 40%;
+ 
+}
+
+#start-screen {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 30%;
 }
 
 .time-container {
@@ -20,6 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .hide {
