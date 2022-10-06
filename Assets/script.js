@@ -108,6 +108,7 @@ var submitEl = document.getElementById("submit");
 var highScoresList = document.getElementById("highscores-list");
 
 
+
 // start the quiz
 function startQuiz(){
     // hide start screen
@@ -221,33 +222,58 @@ function startTimer() {
 }
 
 function saveHighscore() {
+
     // get value of input box - for initials
     var initials = document.getElementById("initials").value;
+    
+    // if has value then it will grab them if not then empty array.
+    var localScores = JSON.parse(localStorage.getItem("userScores")) || [];
+    
     console.log(initials);
+    //console.log(highScoresList);
 
     var userScores = {
         userInitials: initials,
         userScores: timerCount
     }
     
+    // push object userScores into array localScores
+    localScores.push(userScores);
+
     // save to local storage
-    localStorage.setItem("userScores", JSON.stringify(userScores));
+    localStorage.setItem("userScores", JSON.stringify(localScores));
     
     // get saved scores from localstorage, or if not any set to empry array
     var highscore = JSON.parse(localStorage.getItem("userScores")); 
-    console.log(highscore);
+    
+    var sortedHighscore = highscore.reverse();
+
+    // redirect to next page
+    //location.href = "./highscores.html";
+    
+    console.log(sortedHighscore);
     // format new score object for current user
-    if (highscore !== null) {
-       var li = document.createElement("li");
-       console.log(li);
-       console.log(highscore.userInitials);
-       console.log(highscore.userScores);
-       li.textContent = highscore.userInitials + " " + highscore.userScores;
+    if (sortedHighscore !== null) {
+        for(var i = 0; i < sortedHighscore.length; i ++){
+            console.log(sortedHighscore[i].userInitials);
+            console.log(sortedHighscore[i].userScores);
+            var li = document.createElement("li");
+            li.textContent = sortedHighscore[i].userInitials + " " + sortedHighscore[i].userScores
+            console.log(li);
+            console.log(li.textContent);
+            //highScoresList.appendChild(li);        
+        }
+       
+       //console.log("console logging li: " , li);
+       //console.log("console logging highscore.userInitials: " , highscore.userInitials);
+       //console.log("console logging highscore.userScores: " , highscore.userScores);
+       //li.textContent = highscore.userInitials + " " , highscore.userScores;
+       //console.log(li.textContent);
+       //console.log(li);
+      // highScoresList.appendChild(li);
     }
 
         
-
-    // redirect to next page
 }
 
 function hideStart() {
