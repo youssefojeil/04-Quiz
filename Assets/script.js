@@ -195,13 +195,13 @@ function quizEnd() {
     endEl.classList.add("show");
     questionEl.classList.remove("show");
     questionEl.classList.add("hide");
-    //show final score
+    // show final score
     finalScoreEl.textContent = timerCount;
     
 }
 
-// function for updating time
 
+// start timer function from 100 to 0 - 1 sec intervals
 function startTimer() {
     timerCount = 100;
     timer = setInterval(function() {
@@ -229,24 +229,22 @@ function saveHighscore() {
     // push object userScores into array localScores
     localScores.push(userScores);
 
-    // save to local storage
+    // save to local storage as string
     localStorage.setItem("userScores", JSON.stringify(localScores));
     
+    // goes to highsore.html page
     location.href = "./highscores.html";
 }
 
+// hides start container
 function hideStart() {
     startContainer.classList.remove("show");
     startContainer.classList.add("hide");
 }
 
-function clearScores() {
-    localStorage.clear();
-    console.log("test");
-}
-
-
-// click events
+// click event to start quiz
 startEl.addEventListener("click", startQuiz);
+// click event for user choice
 choices.addEventListener("click", userAnswer);
+// click event to save highscore
 submitEl.addEventListener("click", saveHighscore);

@@ -18,9 +18,16 @@ button {
     padding: 20px;
 }
 
+
 #highscore {
     text-decoration: none;
-    color: black;
+    color: #0e9594;
+    font-size: larger;
+    font-weight: bolder;
+    background-color:#c2cae8;
+    border: 1px solid  #c2cae8;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 #highscores-list {
@@ -49,11 +56,17 @@ button {
     font-weight: bolder;
 }
 
-.container {
+#highscores {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+#highscores-list li {
+    font-size: 24px;
+    margin: 10px;
 }
 
 .time-container {
@@ -102,6 +115,14 @@ button {
     font-weight: bold;
     background-color: #c2cae8;
     color: #0e9594;
+}
+
+#highscore:hover {
+    border: 5px solid  #c2cae8;
+    font-size: large;
+    font-weight: bold;
+    background-color: #0e9594;
+    color: #c2cae8;
 }
 
 button:hover {
