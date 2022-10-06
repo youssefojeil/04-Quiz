@@ -23,6 +23,11 @@ button {
     color: black;
 }
 
+#highscores-list {
+    list-style: none;
+    font-size: large;
+}
+
 #start {
     border: 5px solid  #c2cae8;
     border-radius:  10px;
@@ -34,8 +39,21 @@ button {
 #start-screen {
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 30%;
+}
+
+#timer {
+    margin-left: 6px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .time-container {
@@ -56,6 +74,25 @@ button {
 .show {
     display: block;
 }
+
+.wrong{
+    font-weight: bolder;
+    color: white;
+    background-color: red;
+    border: 5px solid red;
+    border-radius:  10px;
+    margin: 0 450px;
+}
+
+.correct{
+    font-weight: bolder;
+    color: white;
+    background-color: green;
+    border: 5px solid green;
+    border-radius:  10px;
+    margin: 0 450px;
+}
+
 
 
 #start:hover {

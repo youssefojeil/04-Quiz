@@ -72,7 +72,6 @@ var questions = [
 ]    
     
 
-
 // set up vars to reference DOM elements
 var startEl = document.getElementById("start");
 var endEl = document.getElementById("end-screen");
@@ -83,7 +82,7 @@ var startContainer = document.getElementById("start-screen");
 var timerEl = document.getElementById("timer");
 var finalScoreEl = document.getElementById("final-score");
 var submitEl = document.getElementById("submit");
-var highScoresList = document.getElementById("highscores-list");
+
 
 
 
@@ -142,7 +141,9 @@ function userAnswer(event) {
         var userInput = element.getAttribute("data");
         console.log(userInput);
     }
-
+    
+    var feedback = document.createElement("p");
+   
     // check if user guessed wrong
     if (userInput !== currentQuestion.answer) {
     // penalize time
@@ -151,15 +152,24 @@ function userAnswer(event) {
     // display new time on page
     timerEl.textContent = timerCount;
     // give them feedback, letting them know it's wrong
-    alert("Answer Selected is Wrong!");
+    feedback.textContent = "Wrong Answer!";
+    feedback.classList.add("wrong");
+    questionEl.append(feedback);
     } 
     
     else {
       // give them feedback, letting them know it's right
-      alert("Answer Selected is Right!");
+      feedback.textContent = "Correct Answer!";
+      feedback.classList.add("correct");
+      questionEl.append(feedback);
     }
   
     // flash right/wrong feedback on page for a short period of time
+    setTimeout(function(){
+        feedback.innerHTML = "";
+        feedback.classList.remove("correct");
+        feedback.classList.remove("wrong");
+    }, "1000");
   
     // move to next question
     currentQuestionIndex++;
@@ -196,6 +206,9 @@ function startTimer() {
     timerCount = 100;
     timer = setInterval(function() {
         timerCount--;
+        if(timerCount == 0){
+            quizEnd();
+        }
         timerEl.textContent = timerCount;
     }, 1000);
 }
@@ -208,9 +221,6 @@ function saveHighscore() {
     // if has value then it will grab them if not then empty array.
     var localScores = JSON.parse(localStorage.getItem("userScores")) || [];
     
-    console.log(initials);
-    //console.log(highScoresList);
-
     var userScores = {
         userInitials: initials,
         userScores: timerCount
@@ -222,42 +232,17 @@ function saveHighscore() {
     // save to local storage
     localStorage.setItem("userScores", JSON.stringify(localScores));
     
-    // get saved scores from localstorage, or if not any set to empry array
-    var highscore = JSON.parse(localStorage.getItem("userScores")); 
-    
-    var sortedHighscore = highscore.reverse();
-
-    // redirect to next page
     location.href = "./highscores.html";
-    
-    console.log(sortedHighscore);
-    // format new score object for current user
-    if (sortedHighscore !== null) {
-        for(var i = 0; i < sortedHighscore.length; i ++){
-            console.log(sortedHighscore[i].userInitials);
-            console.log(sortedHighscore[i].userScores);
-            var li = document.createElement("li");
-            li.textContent = sortedHighscore[i].userInitials + " " + sortedHighscore[i].userScores
-            console.log(li);
-            console.log(li.textContent);
-            //highScoresList.appendChild(li);        
-        }
-       
-       //console.log("console logging li: " , li);
-       //console.log("console logging highscore.userInitials: " , highscore.userInitials);
-       //console.log("console logging highscore.userScores: " , highscore.userScores);
-       //li.textContent = highscore.userInitials + " " , highscore.userScores;
-       //console.log(li.textContent);
-       //console.log(li);
-      // highScoresList.appendChild(li);
-    }
-
-        
 }
 
 function hideStart() {
     startContainer.classList.remove("show");
     startContainer.classList.add("hide");
+}
+
+function clearScores() {
+    localStorage.clear();
+    console.log("test");
 }
 
 
