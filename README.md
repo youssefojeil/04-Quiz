@@ -34,3 +34,9 @@ THEN I can save my initials and my score
 ## Link
 
 Test Your Knowledge!: [TAKE THE QUIZ](https://youssefojeil.github.io/04-Quiz/index.html)
+
+## Images
+
+![Start Page](./Assets/Images/start-page.png)
+![Question Page](./Assets/Images/question-page.png)
+![Highscores Page](./Assets/Images/highscores.png)
